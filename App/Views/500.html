@@ -1,0 +1,26 @@
+{% extends "header.html" %}
+{% block title %}Error{% endblock %}
+{% block stylesheets %}
+<style type="text/css">
+	.back{
+		background:url('/images/404.jpg');
+		background-size: 100%;
+		background-position: center,center;
+		background-repeat: no-repeat;
+	}
+	.back h1{
+	    text-align: center;
+	   	padding-top: 15%;
+	    padding-bottom: 15%;
+    	color: white;
+
+    	margin: 0;
+	}
+</style>
+{% endblock %}
+{% block main %}
+<div class="back">
+	<h1>Oops..! Something Went Wrong</h1>
+</div>
+
+{% endblock %}

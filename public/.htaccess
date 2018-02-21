@@ -1,0 +1,12 @@
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#  All Page Requests are Redirected through
+#  index.php?
+#  site.com/home ( to )
+#  site.com/index.php?home
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]

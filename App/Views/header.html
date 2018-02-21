@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block header %}
+{{ parent() }}
+	<!-- Header -->
+	<header class="header style-3">
+
+		<!-- Top bar -->
+		<div class="topbar-and-logobar">
+			<div class="container">
+
+				<!-- Responsive Button -->
+				<div class="responsive-btn pull-right">
+					<a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+				</div>
+				<!-- Responsive Button -->
+
+				<!-- User Login Option -->
+				<ul class="user-login-option pull-right">
+					<li class="login-modal">
+						<a href="/admin/login/" class="login" data-toggle="modal" ></i>Login</a>
+					</li>
+					
+				</ul>
+				<!-- User Login Option -->
+				
+			</div>	
+		</div>
+		<!-- Top bar -->
+
+		<!-- Nav -->
+		<div class="nav-holder">
+			<div class="container">
+				<div class="maga-drop-wrap">
+
+					<!-- Logo -->
+					<div class="logo">
+						<a href="#"><img src="/images/logo-4.png" alt=""></a>
+					</div>
+					<!-- Logo -->
+
+					
+
+					<!-- Nav List -->
+                                        <ul class="nav-list pull-right">
+                                                <li><a href="/">Home</a></li>
+                                                <li class="not-active"><a href="/about/">About</a></li>
+                                                <li>
+                                                <a href="/team/">Team</a>
+                                                </li>
+
+                                                <li>
+                                                <a href="#">Match</a>
+                                                <ul>
+                                                            <li><a href="/match/fixtures/">Fixtures</a></li>
+                                                            <li><a href="/match/results/">Match Results</a></li>
+                                                            <li><a href="/match/point-table/">Point Table</a></li>
+
+                                                        </ul>
+                                                </li>
+                                                <li><a href="/gallery/">Gallery</a></li>
+
+                                                <li><a href="/contact/">Contact</a></li>
+                                                <li><a href="/developers/">Dev <span class="fa fa-cogs"></span></a></li>
+                                        </ul>
+					<!-- Nav List -->
+
+				</div>
+			</div>
+		</div>
+		<!-- Nav -->
+
+	</header>
+	<!-- Header -->
+
+	<!-- Page Heading & Breadcrumbs  -->
+	<div class="page-heading-breadcrumbs">
+		<div class="container">
+			<h2>{% block pagehead %}{% endblock %}</h2>
+			<ul class="breadcrumbs">
+				<li><a href="/">Home</a></li>
+				<li>{{ block('pagehead') }}</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Page Heading & Breadcrumbs  -->
+
+{% endblock header%}

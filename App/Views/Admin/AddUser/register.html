@@ -1,0 +1,71 @@
+{% extends "adminHeader.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<style type="text/css">
+.fail{
+  background-color: #ff8282!important;
+}
+.success{
+  background-color: #d2ffde!important;
+}
+</style>
+{% endblock %}
+{% block main %}
+ <div class="container">
+  <h1 class="h1 text-center">Register</h1>
+   <div class="form-group col-lg-5" style="float:none;margin:auto">
+    <form action="/admin/add-user/add/" method="POST">
+        <input type="text" name="username" placeholder="USERNAME" class="form-control" required id="username">
+        <input type="password" name="password" placeholder="PASSWORD" class="form-control" id="pass1" required minlength="6">
+        <input type="password" Placeholder="REPEAT PASSWORD" class="form-control" id="pass2" required>
+        <input type="hidden" name="key" value="{{ id }}">
+        <input type="submit" name="submit" value="ADD" class="btn btn-success form-control" disabled id="submit">
+    </form>
+   </div>
+ </div>
+ {% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+$("#username").keyup(function(){
+  var user=$("#username").val();
+  if(user.length==0){
+    $("username").removeClass("success");
+    $("#username").addClass("fail");
+  }
+  else{
+    $("username").removeClass("fail");
+    $("#username").addClass("success");
+  }
+});
+$("#pass1").keyup(function(){
+  var pass1=$("#pass1").val();
+  var pass2=$("#pass2").val();
+  if(pass1.length<6){
+      $("#pass1").removeClass("success");
+      $("#pass1").addClass("fail");
+      $("#submit").attr("disabled","disabled");
+  }
+  else{
+      $("#pass1").removeClass("fail");
+      $("#pass1").addClass("success");
+      if(pass2.length>=6){
+        $("#submit").removeAttr("disabled");
+      }
+   }
+});
+$("#pass2").keyup(function(){
+   var pass1=$("#pass1").val();
+   var pass2=$("#pass2").val();
+   if(pass1!=pass2){
+      $("#pass2").removeClass("success");
+      $("#pass2").addClass("fail");
+      $("#submit").attr("disabled","disabled");
+   }
+   if(pass1===pass2){
+      $("#pass2").removeClass("fail");
+      $("#pass2").addClass("success");
+      $("#submit").removeAttr("disabled");
+   }
+});
+</script>
+{% endblock %}

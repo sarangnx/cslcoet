@@ -1,0 +1,50 @@
+{% extends "adminHeader.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+ <div class="container">
+   <div class="table-responsive">
+    <table class="table table-stripped">
+     <thead>
+       <tr>
+         <th>USERNAME</th>
+         <th>USERGROUP</th>
+         <th>ACTION</th>
+       </tr>
+     </thead>
+     <tbody>
+      {% for key,value in users%}
+     <tr>
+      <td>{{ value.username }}</td>
+      <td>{{ value.usergroup }}</td>
+      <td>
+          <a href="/admin/add-user/delete/{{ value.userid }}/" class="btn-link">Delete</a>
+          <a href="/admin/add-user/reset/{{ value.userid }}/" class="btn-link">Password Reset</a>
+      </td>
+     </tr>
+     {% endfor %}
+     </tbody>
+    </table>
+   </div>
+ </div> <!-- /container -->
+ <div class="container">
+  <h3 class="h3">Generate Key</h3>
+  <button type="button" id="keygen" class="btn btn-success">CLICK</button>
+  <div id="results">
+  </div>
+ </div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+   $("#keygen").click(function(){
+      //SENDING TO SERVER
+      $.post("/admin/add-user/generate/",
+           {
+              generate: "true"
+           },
+           function(data,status){
+              $("#results").html(data);
+           }
+       );
+   });
+</script>
+{% endblock %}

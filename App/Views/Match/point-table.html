@@ -1,0 +1,133 @@
+{% extends "header.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block pagehead %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<style type="text/css">
+.fa.fa-caret-up{
+   color:#008000;
+   font-size:18px;
+}
+.fa.fa-caret-down{
+   color:#f00;
+   font-size:18px;
+}
+.fa.fa-circle{
+   color:#808080;
+   font-size:10px;
+}
+@media(min-width: 800px){
+	span.mobile{
+		display:none;
+	}
+	span.desktop{
+		disply:block;
+	}
+}
+@media(max-width: 800px){
+	span.mobile{
+		display:block;
+	}
+	span.desktop{
+		display:none;
+	}
+}
+
+
+</style>
+{% endblock %}
+
+{% block main %}
+
+		<!-- Match Result -->
+		<div class="theme-padding white-bg">
+			<div class="container">
+				<div class="row">
+
+					
+					
+					<!-- Match Result Contenet -->
+					<div>
+
+						<!-- Piont Table -->
+						<div class="macth-fixture">
+							<h5>CSL Season 2</h5>
+							<div class="last-matches styel-3">
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover">
+									    <thead>
+									    	<tr>
+										        <th>#</th>
+										        <th>Team</th>
+										        <th>
+										        	<span class="desktop">Played</span>
+										        	<span class="mobile">P</span>
+										        </th>
+										        <th>
+										        	<span class="desktop">Won</span>
+										        	<span class="mobile">W</span>
+										        </th>
+										        <th>
+										        	<span class="desktop">Drawn</span>
+										        	<span class="mobile">W</span>
+										        </th>
+										        <th>
+										        	<span class="desktop">Lost</span>
+										        	<span class="mobile">L</span>
+										        </th>
+										        <th>GF</th>
+										        <th>GA</th>
+										        <th>GD</th>
+										        <th>
+										        	<span class="desktop">Points</span>
+										        	<span class="mobile">Pts</span>
+										        </th>
+									      	</tr>
+									    </thead>
+									    <tbody>
+									    	{% for key,value in pointTable %}
+									    	<tr>
+										    	<td class="position"><span class="{{ value.change }}"></span> {{ value.position }} </td>
+    											<td>
+    												<div data-toggle="tooltip" title="{{ value.team_name }}" >
+    													<div style="display:table-cell;">
+    														<img src="/images/teams/{{ value.team_logo }}" alt="">
+    													</div>
+    													<span style="display:table-cell;">
+    														<span class="desktop"> {{ value.team_name }} <b>[{{ value.team_class }}]</b></span>
+    														<span class="mobile">{{ value.team_class }}</span>
+    													</span>
+    												</div>
+    											</td>
+    											<td>{{ value.played }}</td>
+    											<td>{{ value.won }}</td>
+    											<td>{{ value.drawn }}</td>
+    											<td>{{ value.lost }}</td>
+										    	<td>{{ value.gf }}</td>
+    											<td>{{ value.ga }}</td>
+    											<td>{{ value.gd }}</td>
+    											<td>{{ value.points }}</td>
+   											</tr>
+   											{% endfor %}
+
+									    </tbody>
+								  	</table>
+							  	</div>
+							</div>
+						</div>
+						<!-- Piont Table -->
+
+					</div>
+					<!-- Match Result Contenet -->
+
+				</div>
+			</div>
+		</div>
+		<!-- Match Result -->
+{% endblock %}
+{% block javascripts %}
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+{% endblock %}

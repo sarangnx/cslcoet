@@ -1,0 +1,87 @@
+{% extends "header.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block pagehead %} {{ title }} {% endblock %}
+
+{% block main %}
+		<!-- Contact -->
+		<div class="theme-padding white-bg">
+			<div class="container">
+			
+				<!-- Main Heading -->
+				<div class="main-heading-holder">
+					<div class="main-heading">
+						<h2>Contact us</h2>
+					</div>
+				</div>
+				<!-- Main Heading -->
+
+				<!-- contact columns -->
+				<ul class="row">
+					<li class="col-sm-4">
+						<div class="address-widget">
+							<span class="address-icon"><i class="fa fa-phone"></i></span>
+							<h5>OUR NUMBERS</h5>
+							<p>+91 123456789<span class="red-color">Name ( Manager )</span></p>
+							<p>+91 123456789<span class="red-color">Name ( Secretary )</span></p>
+							<p>+91 123456789<span class="red-color">Name ( Developer )</span></p>
+							<p>Call at any time convenient for you. We are available for you..!</p>
+						</div>
+					</li>
+					<li class="col-sm-4">
+						<div class="address-widget more-info">
+							<span class="address-icon"><i class="fa fa-info"></i></span>
+							<h5>MORE INFO</h5>
+							<strong>COET Soccer League (CSL) </strong>
+							<p>CSL is an College football organisation that has been Established in 2k16</p>
+						</div>
+					</li>
+					<li class="col-sm-4">
+						<div class="address-widget office-adderss">
+							<span class="address-icon"><i class="fa fa-map-marker"></i></span>
+							<h5>OUR College Address</h5>
+							<strong>College Of Engineering </strong>
+							<p>Eranholi. P.O. Thalassery , Kannur-Dt., Kerala-670107</p>
+							<p><i class="red-color fa fa-envelope-o"></i>www.cethalassery.ac.in</p>
+						</div>
+					</li>
+				</ul>
+				<!-- contact columns -->
+
+			</div>
+		</div>
+		<!-- Contact -->
+
+		<!-- Contact Form Holder -->
+		<div class="theme-padding-bottom">
+			<div class="container">
+				<h2>Send us an email</h2> 
+				<div class="row">
+				
+					<!-- Form -->
+					<form id="contact-form" class="contact-form col-sm-6">
+						<div class="form-group">
+					    	<input type="text" class="form-control" required="required" placeholder="Name">
+					    	<i class="fa fa-user"></i>
+					   	</div>
+					   	<div class="form-group">
+					    	<input type="text" class="form-control" required="required" placeholder="Email *">
+					   		<i class="fa fa-envelope"></i>
+					   	</div>
+					   	<div class="form-group">
+					    	<input type="text" class="form-control" required="required" placeholder="Phone">
+					   		<i class="fa fa-phone"></i>
+					   	</div>
+						<div class="form-group">
+							<textarea class="form-control style-d" rows="6" id="comment" placeholder="Write Comments here..."></textarea>
+							<i class="fa fa-pencil-square-o"></i>
+						</div>
+					   	<button class="btn red-btn pull-right">Send Comments</button>
+					</form>
+					<!-- Form -->
+
+					
+				</div>
+			</div>
+		</div>
+		<!-- Contact Form Holder -->
+{% endblock %}

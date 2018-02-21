@@ -1,0 +1,101 @@
+{% extends "header.html" %}
+{% block title %}{{ team[0].team_name }}{% endblock %}
+{% block pagehead %}{{ team[0].team_name }}{% endblock %}
+{% block stylesheets %}
+<style type="text/css">
+	.parallax-window {
+		padding: 0px
+	}
+	.parallax-logo img{
+		max-height:200px;
+	}
+	.parallax-logo{
+		margin: auto;
+		display: table;
+	}
+	@media(max-width: 768px){
+		.parallax-logo img{
+			max-height:150px;
+		}
+	}
+	#stats{
+		border-top: solid 5px #ff0000;
+		margin-top: 30px;
+		margin-bottom: 20px;
+		padding: 10px;
+		background: #f3f3f3;
+	}
+	#players{
+		border-top: solid 5px #ff0000;
+		margin-top: 30px;
+		margin-bottom: 20px;
+		padding: 10px;
+		background: #f3f3f3;
+	}
+	#players ul {
+		font-family: monospace;
+    	text-transform: uppercase;
+	}
+</style>
+<link rel="stylesheet" href="/css/lightbox.min.css">
+{% endblock %}
+{% block parallax %}
+<!-- Page Heading banner -->
+<div class="overlay-dark theme-padding parallax-window" data-appear-top-offset="600" data-parallax="scroll" data-image-src="/images/teams/{{ team[0].team_logo }}">
+	<div class="parallax-logo">
+			<img class="team-logo" src="/images/teams/{{ team[0].team_logo }}" alt=""/>
+	</div>
+</div>
+<!-- Page Heading banner -->
+{% endblock %}
+{% block main %}
+<div class="container">
+	<div class="row">
+		<div style="padding-top:20px;">
+				<img class=" col-lg-8 col-lg-push-2 " src="/images/teams/{{ team[0].team_image }}" alt=""/>
+		</div>
+	</div>
+		<div class="col-lg-8 col-lg-push-2 " id="players">
+		<h2>PLAYERS</h2>
+		<div class="content">
+			<ul>
+			{% for key,value in players %}
+				<li>{{ value.player_name }}</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="col-lg-8 col-lg-push-2 " id="stats">
+		<h2>STATS</h2>
+		<div class="content">
+			<div id="piechart"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	google.charts.load("current", {packages: ["corechart"]});
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Heading', 'Count'],
+          ['Won',  {{ stats.won }} ],
+          ['Lost', {{ stats.lost }} ],
+          ['Draw', {{ stats.drawn}} ],
+        ]);
+
+        var options = {
+          title: 'Total Matches Played : {{ stats.played }}',
+          tooltip:{text:'value'},
+          pieSliceText:'value'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+</script>
+{% endblock %}

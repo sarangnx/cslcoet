@@ -1,0 +1,35 @@
+{% extends "adminHeader.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<style type="text/css">
+.teamlogo{
+	width:40px;
+	height:40px;
+	margin:10px;
+}
+span a{
+	color:#286090;
+	display: inline;
+	font-weight: bold;
+}
+</style>
+{% endblock %}
+{% block main %}
+<div class="team-grid theme-padding white-bg">
+	<div class="container">
+		<h2>TEAMS</h2>
+		<div class="row">
+			{% for key,value in teams %}
+			<div class="col-lg-6 animate">
+				<img src="/images/teams/{{ value.team_logo }}" class="teamlogo" >
+				<span><a href="/admin/team/edit/{{ value.team_name|url_encode }}">{{ value.team_name }}</a></span>
+				<button onclick="">Lock</button>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock main %}
+{% block javascripts %}
+
+{% endblock %}

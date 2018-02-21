@@ -1,0 +1,99 @@
+{% extends "header.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block pagehead %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<style type="text/css">
+.row.image {
+ -moz-column-width: 20em;
+ -webkit-column-width: 20em;
+ -moz-column-gap: 10px;
+ -webkit-column-gap:10px; 
+}
+.row > .col-lg-3 {
+ display: inline-block;
+ padding: 0;
+ margin: 0px;
+ width:  100%; 
+ float:none;
+}
+
+.img-responsive {
+  border:0px solid #999;
+}
+</style>
+<link rel="stylesheet" href="/css/lightbox.min.css">
+{% endblock %}
+{% block main %}
+<!-- Gallery Views -->
+<div class="theme-padding white-bg">
+  <div class="container">
+	<!-- Gallery 4 Column -->
+	<div class="theme-padding">
+   		<!-- Gallery Heading -->
+   		<div class="col-sm-12 p-0">
+   			<h2>Shots</h2>
+  		</div>
+ 		<!-- Gallery Heading -->
+ 		{% if totalPage > 1 %}
+ 		<!-- Pagination -->
+		<div style="margin: auto; text-align: center;">
+			<ul class="pagination pagination-lg">
+				{% if page != 1 %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page - 1}}/"><span class="fa fa-chevron-left "></span></a></li>
+				{% else %}
+					<li class="page-item disabled"><a class="page-link" href="javascript:void(0);"><span class="fa fa-chevron-left "></span></a></li>
+				{% endif %}
+
+				{% if page-2 > 0 %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page - 2}}">{{ page-2 }}</a></li>
+				{% endif %}
+
+				{% if page-1 > 0 %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page - 1}}">{{ page-1 }}</a></li>
+				{% endif %}
+
+					<li class="page-item active"><a class="page-link" href="#">{{ page }}</a></li>
+
+				{% if page+1 <= totalPage %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page + 1}}">{{ page+1 }}</a></li>
+				{% endif %}
+
+				{% if page+2 <= totalPage %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page + 2}}">{{ page+2 }}</a></li>
+				{% endif %}
+
+				{% if page != totalPage %}
+  					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page + 1}}/"><span class="fa fa-chevron-right"></span></a></li>
+  				{% else %}
+  					<li class="page-item disabled"><a class="page-link" href="javascript:void(0)"><span class="fa fa-chevron-right"></span></a></li>
+  				{% endif %}
+			</ul>
+		</div>
+		<!-- Pagination -->
+		{% endif %}
+	</div>
+	<div class="row m-0 image">
+		<!-- gallery Figure -->
+		{% for key,value in images %}
+		<div class="col-sm-6 col-lg-3 col-md-4  ">
+		<a class="gallery-image-link" href="/images/gallery/{{ value.image}}" data-lightbox="gallery-set">
+			<img class="gallery-image img-responsive" src="/images/gallery/thumbs/{{ value.image }}" alt=""/>
+		</a>
+		</div>
+		{% endfor %}		
+		<!-- gallery Figure -->
+	</div>
+  </div>
+<!-- Gallery 4 Column -->
+</div>
+<!-- Gallery Views -->
+{% endblock main %}
+{% block javascripts %}
+<script src="/js/lightbox.min.js"></script>
+<script>
+    lightbox.option({
+      'albumLabel' : '%1 / %2',
+      'wrapAround' :true
+    })
+</script>
+{% endblock %}

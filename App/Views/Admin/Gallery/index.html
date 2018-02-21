@@ -1,0 +1,102 @@
+{% extends "adminHeader.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<style type="text/css">
+.row.image {
+ -moz-column-width: 20em;
+ -webkit-column-width: 20em;
+ -moz-column-gap: 10px;
+ -webkit-column-gap:10px; 
+}
+.row > .col-lg-3 {
+ display: inline-block;
+ padding: 0;
+ margin: 0px;
+ width:  100%; 
+ float:none;
+}
+
+.img-responsive {
+  border:0px solid #999;
+}
+.image .btn{
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+{% endblock %}
+{% block main %}
+<!-- Gallery Views -->
+<div class="theme-padding white-bg">		
+  <div class="container">
+  		  	<div class="form-group">
+        	<form action="/admin/gallery/upload/" method="POST" enctype="multipart/form-data">
+    			<label class="control-label" for="picker">Choose Images To Upload</label>
+    			<input type="file" name="images[]" multiple=""  id="picker">
+    			<div style="margin:10px">
+    				<button type="submit" name="submit" value="Upload" class="btn btn-success"><span class="fa fa-upload"><span> <strong>UPLOAD</strong></button>
+    			</div>
+  			</form>
+ 		</div>
+
+	<div>
+ 		{% if totalPage > 1 %}
+ 		<!-- Pagination -->
+		<div style="margin: auto; text-align: center;">
+			<ul class="pagination pagination-lg">
+				{% if page != 1 %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page - 1}}/"><span class="fa fa-chevron-left "></span></a></li>
+				{% else %}
+					<li class="page-item disabled"><a class="page-link" href="javascript:void(0);"><span class="fa fa-chevron-left "></span></a></li>
+				{% endif %}
+
+				{% if page-2 > 0 %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page - 2}}">{{ page-2 }}</a></li>
+				{% endif %}
+
+				{% if page-1 > 0 %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page - 1}}">{{ page-1 }}</a></li>
+				{% endif %}
+
+					<li class="page-item active"><a class="page-link" href="#">{{ page }}</a></li>
+
+				{% if page+1 <= totalPage %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page + 1}}">{{ page+1 }}</a></li>
+				{% endif %}
+
+				{% if page+2 <= totalPage %}
+					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page + 2}}">{{ page+2 }}</a></li>
+				{% endif %}
+
+				{% if page != totalPage %}
+  					<li class="page-item"><a class="page-link" href="/gallery/page/{{ page + 1}}/"><span class="fa fa-chevron-right"></span></a></li>
+  				{% else %}
+  					<li class="page-item disabled"><a class="page-link" href="javascript:void(0)"><span class="fa fa-chevron-right"></span></a></li>
+  				{% endif %}
+			</ul>
+		</div>
+		<!-- Pagination -->
+		{% endif %}
+	</div>
+	<div class="row m-0 image">
+		<!-- gallery Figure -->
+		{% for key,value in images %}
+		<div class="col-sm-6 col-lg-3 col-md-4  ">
+			<img class="gallery-image img-responsive" src="/images/gallery/thumbs/{{ value.image }}" alt=""/>
+			<a href="/admin/gallery/delete/{{ value.s_no }}/" class="btn btn-danger" role="button">Delete</a>
+		</div>
+		{% endfor %}		
+		<!-- gallery Figure -->
+	</div>
+  </div>
+<!-- Gallery 4 Column -->
+</div>
+<!-- Gallery Views -->
+{% endblock main %}
+{% block javascripts %}
+<script type="text/javascript">
+	
+</script>
+{% endblock %}

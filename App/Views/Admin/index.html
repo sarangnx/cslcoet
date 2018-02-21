@@ -1,0 +1,21 @@
+{% extends "adminHeader.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+<main class="main-content theme-padding">
+ <div class="container">
+  <div class="nav">
+   <ul class="nav nav-stacked">
+     <li class="h1">MENU</li>
+     <li><a href="/admin/team/new/" class="btn-link">Team List</a></li>
+     <li><a href="/admin/team/teams/" class="btn-link">Team Info</a></li>
+     <li><a href="/admin/fixtures/" class="btn-link">Fixtures</a></li>
+     <li><a href="/admin/point-table/" class="btn-link">Point Table</a></li>
+     <li><a href="/admin/match/" class="btn-link">Match Details</a></li>
+     <li><a href="/admin/gallery/" class="btn-link">Gallery</a></li>
+     <li><a href="/admin/notification/" class="btn-link">Notification</a></li>
+     <li><a href="/admin/add-user/" class="btn-link">Add User</li></a></li>
+   </ul>
+  </div>
+ </div> <!-- /container -->
+</main>
+{% endblock %}

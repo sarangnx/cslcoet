@@ -1,0 +1,87 @@
+{% extends "adminHeader.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+<div class="container">
+  {% if match %}
+  <div class="form-group">
+    <form action="/admin/point-table/update/" method="POST">
+      <h1 class="text-center h1"></h1>
+      {% if match[0] %}
+      <div class="form-group">
+        <h3 class="h3">Match 1 [ {{ match[0].match_date }} ]</h3>
+        <span class="h4">{{ match[0].team_1_name }}</span> v/S <span class="h4">{{ match[0].team_2_name }}</span>
+        <div class="input-group">
+          <label for="team1_1" style="width: 50%" class="form-control input-group-addon" >{{ match[0].team_1_name }}</label>
+          <label for="team1_2" style="width: 50%" class="form-control input-group-addon" >{{ match[0].team_2_name }}</label>
+          <input type="text" id="team1_1" name="match1_team1" placeholder="Goals Scored" style="width: 50%" class="form-control input-group-addon" >
+          <input type="hidden" name="match1_id1" value="{{ match[0].team_1_id }}">
+          <input type="text" id="team1_2" name="match1_team2" placeholder="Goals Scored" style="width: 50%" class="form-control input-group-addon" >
+          <input type="hidden" name="match1_id2" value="{{ match[0].team_2_id }}">
+          <input type="hidden" name="match1" value="{{ match[0].match_num }}">
+        </div>
+      </div>
+     {% endif %}
+     {% if match[1] %}
+     <div class="form-group">
+       <h3 class="h3">Match 2 [ {{ match[1].match_date }} ]</h3>
+         <span class="h4">{{ match[1].team_1_name }}</span> v/S <span class="h4">{{ match[1].team_2_name }}</span>
+          <div class="input-group">
+           <label for="team2_1" style="width: 50%" class="form-control input-group-addon" >{{ match[1].team_1_name }}</label>
+           <label for="team2_2" style="width: 50%" class="form-control input-group-addon" >{{ match[1].team_2_name }}</label>
+           <input type="text" id="team2_1" name="match2_team1" placeholder="Goals Scored" style="width: 50%" class="form-control input-group-addon" >
+           <input type="hidden" name="match2_id1" value="{{ match[1].team_1_id }}">
+           <input type="text" id="team2_2" name="match2_team2" placeholder="Goals Scored" style="width: 50%" class="form-control input-group-addon" >
+           <input type="hidden" name="match2_id2" value="{{ match[1].team_2_id }}">
+           <input type="hidden" name="match2" value="{{ match[1].match_num }}">
+          </div>
+     </div>
+     {% endif %}
+     <div class="form-group">
+        <input type="submit" class="btn btn-success" value="SUBMIT" name="submit">
+     </div>
+    </form>
+  </div>
+  {% endif %}
+
+
+  <div>
+    <h1 class="h1">Point Table</h1>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Team</th>
+          <th>Played</th>
+          <th>Won</th>
+          <th>Drawn</th>
+          <th>Lost</th>
+          <th>GF</th>
+          <th>GA</th>
+          <th>GD</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for key,value in pointTable %}
+        <tr>
+          <td class="position"><span class="{{ value.change }}"></span> {{ value.position }} </td>
+          <td>
+            <span> {{ value.team_name }} <b>[ {{ value.team_class }} ]</b></span>
+          </td>
+          <td>{{ value.played }}</td>
+          <td>{{ value.won }}</td>
+          <td>{{ value.drawn }}</td>
+          <td>{{ value.lost }}</td>
+          <td>{{ value.gf }}</td>
+          <td>{{ value.ga }}</td>
+          <td>{{ value.gd }}</td>
+          <td>{{ value.points }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock main %}

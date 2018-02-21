@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="author" content=""/>
+<!-- Document Title -->
+<title>{% block title %}{% endblock %}</title>
+<!-- StyleSheets -->
+<link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main.css">	
+<link rel="stylesheet" href="/css/animate.css">
+<link rel="stylesheet" href="/css/transition.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/color.css">
+<link rel="stylesheet" href="/css/responsive.css">
+{% block stylesheets %}{% endblock %}
+<!-- JavaScripts -->
+</head>
+<body>
+
+<!-- Wrapper -->
+<div class="wrap push">
+	{# Header section of page #}
+
+ 	{% block header %}
+ 	{% endblock %}
+ 	
+ 	{% block parallax %}
+ 	{% endblock %}
+	<!-- Main Content -->
+	<main class="main-content">
+		{# main content block #}
+		{% block main %}
+		{% endblock %}
+	</main>
+	<!-- Main Content -->
+
+	<!-- Footer -->
+	<footer class="main-footer style-2">
+
+		<!-- Footer Columns -->
+		<div class="container">
+
+			<!-- Footer columns -->
+			<div class="footer-column border-0">
+				<div class="row">
+					
+					<!-- Footer Column -->
+					<div class="col-sm-4 col-xs-6 r-full-width-2 r-full-width">
+						<div class="column-widget h-white">
+							<div class="logo-column p-white">
+								<img class="footer-logo" src="/images/footer-logo.png" alt="">
+								<ul class="address-list style-2">
+									<li><span>Address:</span>College Of Engineering, Thalassery</li>
+									<li><span>Phone Number:</span>+91 123456789</li>
+									<li><span>Email Address:</span>info@lapzoid.com</li>
+								</ul>
+								<span class="follow-us">follow us </span>
+								<ul class="social-icons">
+									<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- Footer Column -->
+				</div>
+			</div>
+			<!-- Footer columns -->
+
+		</div>
+		<!-- Footer Columns -->
+
+		<!-- Copy Rights -->
+		<div class="copy-rights">
+			<div class="container">
+				<p>© Copyright by <i class="red-color">Lapzoid</i> All rights reserved.</p>
+				<a class="back-to-top scrollup" href="#"><i class="fa fa-angle-up"></i></a>
+			</div>
+		</div>
+		<!-- Copy Rights -->
+
+	</footer> 
+	<!-- Footer -->
+
+</div>
+<!-- Wrapper -->
+
+<!-- Slide Menu -->
+<nav id="menu" class="responive-nav">
+	<a class="r-nav-logo" href="#"><img src="/images/logo-1.png" alt=""></a>
+    <ul class="respoinve-nav-list">
+                <li>
+                        <li><a href="/">Home</a></li>
+                </li>
+                <li>
+                        <a href="/about/">About</a>
+                </li>
+                <li>
+                        <a href="/team/">Team</a>
+                </li>
+                <li>
+                        <a href="/gallery/">Gallery</a>
+                </li>
+                <li>
+                        <a data-toggle="collapse" href="#list-3"><i class="pull-right fa fa-angle-down"></i>Match</a>
+                        <ul class="collapse" id="list-3">
+                            <li><a href="/match/fixtures/">Fixtures</a></li>
+                            <li><a href="/match/results/">Match Results</a></li>
+                            <li><a href="/match/point-table/">Point Table</a></li>
+                        </ul>
+                </li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/developers/">Developers <span class="fa fa-cogs"></span></a></li>
+
+     </ul>
+</nav>
+<!-- Slide Menu -->
+
+
+<!-- Java Script -->
+<script src="/js/jquery-3.2.1.min.js"></script>        
+<script src="/js/vendor/bootstrap.min.js"></script> 			
+<script src="/js/bigslide.js"></script>		
+<script type="text/javascript">
+	jQuery('.menu-link').bigSlide();
+</script>
+<script src="/js/slick.js"></script>		
+<script src="/js/parallax.min.js"></script>			   	 	
+<script src="/js/appear.js"></script>		 						
+<script src="/js/wow-min.js"></script>	
+{% block javascripts %}{% endblock %}
+<script type="text/javascript">
+    $('img').on('error',function(){
+        $(this).attr('src', '/images/noimage.webp');
+
+    });
+</script>
+<script src="/js/main.js"></script>
+</body>
+</html>

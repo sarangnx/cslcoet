@@ -1,0 +1,251 @@
+{% extends "adminHeader.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="/css/jquery.timepicker.min.css">
+<style type="text/css">
+html,body{
+  height:100%;
+}
+.nav a i{
+font-size:20px;
+}
+table tbody tr td input{
+  height:18px;
+ margin:0px;
+}
+td,th{
+  text-align:center;
+}
+.form-control{
+  text-align:center;
+}
+optgroup{
+  text-align:start;
+}
+#table th{
+  min-width:200px;
+}
+</style>
+{% endblock %}
+{% block main %}
+<div class="container">
+<form action="/fixtures/save" method="POST">
+ <div class="table-responsive">
+  <table class="table table-stripped" id="table">
+   <thead>
+     <tr>
+       <th style="min-width:50px">#</th>
+       <th>Date</th>
+       <th>Time</th>
+       <th>Team 1</th>
+       <th>Team 2</th>
+       <th style="width:150px"></th>
+     </tr>
+   </thead>
+   <tbody>
+      {% for key,value in fixtures %}
+      <tr>
+          <td class="match_number">{{ value.match_num }}</td>
+          <td class="match_date">{{ value.date }}</td>
+          <td class="match_time">{{ value.time }}</td>
+          <td class="team_1_name">{{ value.team_1_name }}</td>
+          <td class="team_2_name">{{ value.team_2_name }}</td>
+          <td style="display:none;">
+              <span class="team_1_id" style="display:none;">{{ value.team_1_id }}</span>
+              <span class="team_2_id" style="display:none;">{{ value.team_2_id }}</span>
+          </td>
+          <td>
+            <button type= "button" class="editbtn btn btn-primary"><span class="fa fa-edit"></span></button>
+            <button type="button" class="deletebtn btn btn-danger"><span class="fa fa-remove"></span></button>
+          </td>
+      </tr>
+      {% endfor %}
+     </tbody>
+  </table>
+  </div>
+  <div>
+    <button type="button" class="btn btn-primary addbtn ">ADD <span class="fa fa-plus"></button>
+  </div>
+  <div>
+  <button type="button" id="submit" name="submit" value="submit" class="btn btn-success">SAVE</button>
+  </div>
+</div> <!-- /container -->
+<div id="results"></div>
+{% endblock %}
+{% block javascripts %}
+<script src="/js/datepicker.js"></script> 
+<script src="/js/jquery.timepicker.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+   //ADDING INPUT COLUMN
+    var teams = [];
+    $.ajax({
+      type: 'POST',
+      url: "/admin/fixtures/ajax-teams/" ,
+    })
+      .done(function(response){
+              teams = JSON.parse(response,true);
+              teammarkup="";
+              for(x in teams){
+                teammarkup+="<optgroup label='Pool "+x+"'>";
+                for(y in teams[x]){
+                  teammarkup+="<option value='"+teams[x][y].team_id+"'>"+teams[x][y].team_class+"</option>";
+                }
+              }
+              teammarkup+="</optgroup>";
+
+              /*
+               *  Edit fixtures
+               *  Replace Table Row with Form Elements
+               */
+              function EDIT(){
+                var match_number=$(this).parents("tr").find(".match_number").html();
+                var match_date=$(this).parents("tr").find(".match_date").html();
+                var match_time=$(this).parents("tr").find(".match_time").html();
+                var team_1_id=$(this).parents("tr").find(".team_1_id").html();
+                var team_1_name=$(this).parents("tr").find(".team_1_name").html();
+                var team_2_id=$(this).parents("tr").find(".team_2_id").html();
+                var team_2_name=$(this).parents("tr").find(".team_2_name").html();
+                var markup='<td> <input type="text" placeholder="#" class="match_number form-control" value="'+match_number+'"></td>';
+                markup+='<td><input type="text" class="date_picker form-control" placeholder="mm/dd/yyyy" value="'+match_date+'"></td>';
+                markup+='<td> <input type="text" placeholder="HH:MM AM" class="time_picker match_time form-control" value="'+match_time+'"></td>';
+                markup+='<td><select class="team_1 form-control">';
+                markup+=teammarkup;
+                markup+='</select></td><td><select class="team_2 form-control">';
+                markup+=teammarkup;
+                markup+='</select></td>';
+                markup+='<td><button class="btn btn-success savebtn" type="button" ><span class="fa fa-save"></span></button>';
+                markup+='</td>';
+                var par=$(this).parents("tr");
+                $(this).parents("tr").addClass("editedrow");
+                $(this).parents("tr").html(markup);
+                par.find(".team_1").val(team_1_id);
+                par.find(".team_2").val(team_2_id);
+                $(".date_picker").datepicker();
+                $('.time_picker').timepicker({ 'timeFormat': 'h:i A' });
+                $(".savebtn").bind("click",SAVE);
+              }
+
+              /*
+               *  Save Edited Fixtures
+               *  Extract Data From Form Elements And 
+               *  Add to Tabele Row.
+               *  change class of row
+               */
+              function SAVE(){
+                var match_number=$(this).parents("tr").find(".match_number").val();
+                var match_date=$(this).parents("tr").find(".date_picker").val();
+                var match_time=$(this).parents("tr").find(".match_time").val();
+                var team_1_id=$(this).parents("tr").find(".team_1").val();
+                var team_1_name=$(this).parents("tr").find(".team_1 :selected").text();
+                var team_2_id=$(this).parents("tr").find(".team_2").val();
+                var team_2_name=$(this).parents("tr").find(".team_2 :selected").text();
+
+                var markup='<td class="match_number">'+match_number+'</td>';
+                markup+='<td class="match_date">'+match_date+'</td>';
+                markup+='<td class="match_time">'+match_time+'</td>';
+                markup+='<td class="team_1_name">'+team_1_name+'</td>';
+                markup+='<td class="team_2_name">'+team_2_name+'</td>';
+                markup+='<td style="display:none;"><span class="team_1_id" style="display:none;">'+team_1_id+'</span>';
+                markup+='<span class="team_2_id" style="display:none;">'+team_2_id+'</span></td>';
+                markup+='<td><button type="button" class="editbtn btn btn-primary"><span class="fa fa-edit"></span></button> ';
+                markup+='<button type="button" class="deletebtn btn btn-danger"><span class="fa fa-remove"></span></button></td>';
+                $(this).parents("tr").html(markup);
+                $(".date_picker").datepicker();
+                $('.time_picker').timepicker({ 'timeFormat': 'h:i A' });
+                $(".editbtn").bind("click",EDIT);
+                $(".deletebtn").bind("click",DELETE);
+              }
+
+              /*
+               * Function To delete a row
+               */
+              function DELETE(){
+                $(this).parents("tr").addClass("deletedrow");
+                $(this).parents("tr").hide();
+              }
+
+
+              function ADD(){
+                var markup='<tr class="newrow"><td> <input type="text" placeholder="#" class="match_number form-control"></td>';
+                markup+='<td><input type="text" class="date_picker form-control" placeholder="mm/dd/yyyy"></td>';
+                markup+='<td> <input type="text" placeholder="HH:MM AM" class="time_picker match_time form-control"></td>';
+                markup+='<td><select class="team_1 form-control">';
+                markup+=teammarkup;
+                markup+='</select></td><td><select class="team_2 form-control">';
+                markup+=teammarkup;
+                markup+='</select></td>';
+                markup+='<td><button class="btn btn-success savebtn" type="button" ><span class="fa fa-save"></span></button>';
+                markup+='</td></tr>';
+                $("table tbody").append(markup);
+                $(".date_picker").datepicker();
+                $('.time_picker').timepicker({ 'timeFormat': 'h:i A' });
+                $(".savebtn").bind("click",SAVE);
+              }
+
+            /*
+             * Submit Data after Hitting Save Button
+             */
+            $("#submit").click(function(){
+              $("#loadspinner").show();
+              $("table tbody tr.newrow.editedrow").removeClass("editedrow");
+              $("table tbody tr.newrow.deletedrow").removeClass();
+              var delete_array=[];
+              var edit_match=[{}];
+              var add_match=[{}];
+              var i=0;
+              $("table tbody tr.deletedrow").each(function(){
+                  delete_array[i]=$(this).find(".match_number").html();
+                  i++;
+              });
+              i=0;
+              $("table tbody tr.newrow").each(function(){
+                  add_match[i]=new Object;
+                  add_match[i].match_num=$(this).find(".match_number").html();
+                  add_match[i].match_date=$(this).find(".match_date").html();
+                  add_match[i].match_time=$(this).find(".match_time").html();
+                  add_match[i].team_1_id=$(this).find(".team_1_id").html();
+                  add_match[i].team_2_id=$(this).find(".team_2_id").html();
+                  i++
+              });
+              i=0;
+              $("table tbody tr.editedrow").each(function(){
+                  edit_match[i]=new Object;
+                  edit_match[i].match_num=$(this).find(".match_number").html();
+                  edit_match[i].match_date=$(this).find(".match_date").html();
+                  edit_match[i].match_time=$(this).find(".match_time").html();
+                  edit_match[i].team_1_id=$(this).find(".team_1_id").html();
+                  edit_match[i].team_2_id=$(this).find(".team_2_id").html();
+                  i++;
+              });
+              $.post("/admin/fixtures/save/",
+              { submit: "true",
+                delete: delete_array,
+                edit: edit_match,
+                add: add_match
+              },
+              function(data,status){
+                  $("#loadspinner").hide();
+                  $("#results").html(data);
+                }
+              ).done(function(){
+                $("table tbody tr.newrow").removeClass();
+                $("table tbody tr.deletedrow").removeClass();
+                $("table tbody tr.editedrow").removeClass();
+              });
+            });
+
+              /*
+               * Bind Function to Buttons
+               */
+              $(".addbtn").bind("click",ADD);
+              $(".deletebtn").bind("click",DELETE);
+              $(".editbtn").bind("click",EDIT);
+              $(".savebtn").bind("click",SAVE);
+       });
+});
+</script>
+<div id="loadspinner" style="position: fixed; top: 0px; left: 0px; z-index: 999999; padding-top: 21%; text-align: center; height: 100%; width: 100%; background: rgba(0, 0, 0, 0.9);display:none">
+<span class="fa fa-spin fa-spinner" style="font-size: 100px; color: rgb(255, 255, 255);"></span>
+</div>
+{% endblock %}

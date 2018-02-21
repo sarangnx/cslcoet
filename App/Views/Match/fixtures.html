@@ -1,0 +1,199 @@
+{% extends "header.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block pagehead %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<style>
+.page_navigation a{
+  margin:10px;
+  padding:5px;
+  font-weight:bold;
+  font-size:20px;
+}
+.active_page{
+  color:green;
+}
+.page_navigation{
+  text-align:center;
+}
+@media(max-width: 496px){
+ul.content img {
+    width: 30px;
+    height: 30px;
+}
+}
+</style>
+{% endblock %}
+
+{% block main %}
+ {% if fixtures[0] %}
+ <!-- Next Match 1 -->
+  <div class="next-match style-2">
+    <div class="container p-0">
+      <!-- Macth left Time -->
+      <div class="col-sm-6 bg-2">
+        <div class="left-match-time">
+          <h2>Next Match</h2>
+          <ul id="countdown-1" class="countdown">
+            <li><span class="days">00</span>Days </li>
+            <li><span class="hours">00</span>Hours </li>
+            <li><span class="minutes">00</span>Minutes </li>
+            <li><span class="seconds">00</span>Seconds </li>
+          </ul>
+          <span>{{ fixtures[0].match_date_full }}</span>
+        </div>
+      </div>
+      <!-- Macth left Time -->
+      <!-- Vs Team -->
+      <div class="col-sm-6 bg-1">
+        <div class="vs-team">
+          <div class="team-btw-match">
+            <ul>
+                <li>
+                  <img src="/images/teams/{{ fixtures[0].team_1_logo }}" alt="">
+                  <span>{{ fixtures[0].team_1_name }}</span>
+                </li>
+                <li>
+                  <img src="/images/teams/{{ fixtures[0].team_2_logo }}" alt="">
+                  <span>{{ fixtures[0].team_2_name }}</span>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Vs Team -->
+    </div>
+  </div>
+  <!-- Next Match 1 -->
+  {% endif %}
+  {% if fixtures[1] %}
+  <!-- Next Match 2 -->
+  <div class="next-match style-2">
+    <div class="container p-0">
+      <!-- Macth left Time -->
+      <div class="col-sm-6 bg-2">
+        <div class="left-match-time">
+          <h2>Next Match</h2>
+           <ul id="countdown-2" class="countdown">
+            <li><span class="days">00</span>Days </li>
+            <li><span class="hours">00</span>Hours </li>
+            <li><span class="minutes">00</span>Minutes </li>
+            <li><span class="seconds">00</span>Seconds </li>
+          </ul>
+          <span>{{ fixtures[1].match_date_full }}</span>
+        </div>
+      </div>
+      <!-- Macth left Time -->
+      <!-- Vs Team -->
+      <div class="col-sm-6 bg-1">
+        <div class="vs-team">
+          <div class="team-btw-match">
+            <ul>
+                <li>
+                  <img src="/images/teams/{{ fixtures[1].team_1_logo }}" alt="">
+                  <span>{{ fixtures[1].team_1_name }}</span>
+                </li>
+                <li>
+                  <img src="/images/teams/{{ fixtures[1].team_2_logo }}" alt="">
+                  <span>{{ fixtures[1].team_2_name }}</span>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Vs Team -->
+    </div>
+  </div>
+  <!-- Next Match 1 -->
+ {% endif %}
+
+<!-- Match -->
+<div class="theme-padding white-bg">
+  <div class="container">
+    <div class="row">
+	<!-- match Content -->
+	<div class="matches-shedule-holder">
+	  <div class="col-lg-9 col-sm-8">
+	   <!-- Matches Dates Shedule -->
+	   <div class="matches-dates-shedule" id="page_container">
+           <div class="page_navigation"></div>
+	    <ul class="content">
+      {% for key,value in fixtures %}
+		    <li>
+			   <span class="pull-left"><img src="/images/teams/{{ value.team_1_logo }}" alt="" width="75" height="75"></span>
+			   <span class="pull-right"><img src="/images/teams/{{ value.team_2_logo }}" alt="" width="75" height="75"></span>
+			   <div class="detail">
+			     <strong>{{ value.team_1_name }} <i class="red-color">{{ value.match_date_full }}</i> {{ value.team_2_name }}</strong>
+			     <span class="location-marker"><i class="fa fa-map-marker"></i>Kinfra Ground, Thalassery</span>
+			   </div>
+		    </li>
+      {% endfor %}
+	    </ul>
+	   </div>
+	   <!-- Matches Dates Shedule -->
+
+	</div>
+</div>
+<!-- match Content -->
+
+
+					<!-- Aside -->
+					<div class="col-lg-3 col-sm-4">
+
+						<!-- Aside Widget -->
+						<div class="aside-widget">
+							<h3><span>Top Scorer</span></h3>
+							<a href="#"><img src="" alt=""></a>
+						</div>
+						<!-- Aside Widget -->
+
+						<!-- Aside Widget -->
+						<div class="aside-widget">
+							<h3><span> Player of the Match</span></h3>
+							<a href="#"><img src="" alt=""></a>
+						</div>
+						<!-- Aside Widget -->
+					</div>
+					<!-- Aside -->
+
+				</div>
+			</div>
+		</div>
+		<!-- Match -->
+{% endblock %}
+{% block javascripts %}
+<script src="/js/countdown.js"></script>
+<script src="/js/jquery.pajinate.js"></script>
+<script type="text/javascript">
+$("#countdown-1").countdown({
+     date:"{{ fixtures[0].datetime }}",
+          offset: +5.5
+    },
+    function(){
+      $("#countdown-1").html('<li><span>MATCH STARTED</span></li>');
+    }
+
+);
+$("#countdown-2").countdown({
+     date:"{{ fixtures[1].datetime }}",
+     offset: +5.5
+    },
+    function(){
+      $("#countdown-2").html('<li><span>MATCH STARTED</span></li>');
+    }
+
+);
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+        $('#page_container').pajinate(
+             {
+              items_per_page :5,
+              nav_label_prev : '<span class="fa fa-chevron-left"></span>',
+              nav_label_next : '<span class="fa fa-chevron-right"></span>',
+              num_page_links_to_display : 3,
+              wrap_around: false,
+             });
+
+   });
+</script>
+{% endblock %}

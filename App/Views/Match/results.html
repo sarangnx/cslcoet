@@ -1,0 +1,82 @@
+{% extends "header.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block pagehead %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<style>
+.page_navigation a{
+  margin:10px;
+  padding:5px;
+  font-weight:bold;
+  font-size:20px;
+}
+.active_page{
+  color:green;
+}
+.page_navigation{
+  text-align:center;
+}
+</style>
+{% endblock %}
+
+
+{% block main %}
+<!-- Match Result -->
+<div class="theme-padding white-bg">
+	<div class="container">
+		<div class="row">
+			<!-- Match Result Contenet -->
+				<div class="col-lg-9 col-sm-8">
+					<!-- Matches Result Shedule -->
+					<div class="matches-dates-shedule style-2" id="page_container">
+						<div class="result-top-bar">
+							<span class="pull-left">Match Score</span>
+						</div>
+	                <div class="page_navigation"></div>
+    	                <ul class="content">
+    	                	{% for key,value in results %}
+        	        		<li>
+            	        	    <span class="pull-left"><img src="/images/teams/{{ value.team_1_logo }}" alt="" width="75" height="75"></span>
+                	        	<span class="pull-right"><img src="/images/teams/{{ value.team_2_logo }}" alt="" width="75" height="75"></span>
+                    	    	<div class="detail">
+                    	    		<span style="color:#a5a9ad;font-weight: bold;">{{ value.match_date }}</span>
+                        			<strong>{{ value.team_1_name }} <span class="result-vs">{{ value.team_1_goals }} - {{ value.team_2_goals }}</span>  {{ value.team_2_name }}</strong>
+                        		</div>
+                			</li>
+                			{% endfor %}
+                        </ul>
+		  			</div>
+					<!-- Matches Result Shedule -->
+				</div>
+				<!-- Match Result Contenet -->
+					<!-- Aside -->
+					<div class="col-lg-3 col-sm-4">
+						<!-- Aside Widget -->
+						<div class="aside-widget">
+							<h3><span>Top Scorer</span></h3>
+							<a href="#"><img src="" alt=""></a>
+						</div>
+						<!-- Aside Widget -->
+					</div>
+					<!-- Aside -->
+
+				</div>
+			</div>
+		</div>
+		<!-- Match Result -->
+{% endblock %}
+{% block javascripts %}
+<script src="/js/jquery.pajinate.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+        $('#page_container').pajinate(
+             {
+              items_per_page :5,
+              nav_label_prev : '<span class="fa fa-chevron-left"></span>',
+              nav_label_next : '<span class="fa fa-chevron-right"></span>',
+              num_page_links_to_display : 3,
+              wrap_around: false,
+             });
+
+   });
+</script>
+{% endblock %}
