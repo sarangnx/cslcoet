@@ -1,2 +1,5 @@
 logs/
 vendor/
+public/images/gallery/
+public/images/gallery/thumbs/
+public/images/teams/

@@ -25,8 +25,8 @@ class Gallery extends \Core\Controller{
 		$total = GalleryModel::fetchNumber();
 		$tot_page = ceil($total/$this->limit);
 		$images = GalleryModel::fetchImages($page,$this->limit);
-		if($images==false){
-			$this->redirect('/admin/gallery/page/1/');
+		if( $images==false && $page!=1 ){
+			$this->redirect('/admin/gallery/');
 		}
 		View::renderTemplate('Admin/Gallery/index.html',
 			[

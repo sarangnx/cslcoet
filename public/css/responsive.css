@@ -19,13 +19,13 @@
 .other-stroies li a{ font-size: 11px;}
 .news-post-detail h2{ font-size: 16px;}
 .aside-video-detail p{ font-size: 11px;} 
-
+}
 @media (max-width: 1199px) {
 .latest-tad-nav li.active::after{ display: none;}
 .nav-list > li a{ padding: 20px 8px; font-size: 13px;}
 .banner-caption.style-1 h1,
 .banner-caption.style-2 h1{ font-size: 45px;}
-.video-banner-caption h1{ font-size: 24px;}
+.video-banner-caption h1{ font-size: 50px;}
 .pager-heading.match-detail > span{ margin: 0;}
 .logo-width-name img{ margin: 0 18px 0 0;}
 .upcoming-fixture table tbody tr td{ padding: 22px 10px;}
@@ -251,7 +251,7 @@ left: 50%; position: absolute; top: 50%;
 -moz-transform: translate(-50%, -50%);
 -ms-transform: translate(-50%, -50%);
 transform: translate(-50%, -50%);}
-.inner-banner-2 .banner-caption h1{ font-size: 30px;}
+.inner-banner-2 .banner-caption h1{ font-size: 50px;}
 .banner-layer img{ display: none;}
 
 .content-widget > img{ width: 100%; margin: 0 0 30px!important;}
@@ -393,7 +393,7 @@ h3{ font-size: 15px;}
 .logo-width-name{ min-width: 150px;}
 .gallery-figure .btn-list li{ margin: 0 0 0 10px!important; float: left;}
 
-.inner-banner-2 .banner-caption h1{ font-size: 20px;}
+.inner-banner-2 .banner-caption h1{ font-size: 50px;}
 .header.style-2 .logo{ width: 60%; top: -3px}
 .header.style-2 .responsive-btn{ padding: 10px;}
 .next-match.style-2 .left-match-time ul{ margin: 0 0 15px!important;}

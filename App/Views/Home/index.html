@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 {% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<style tyle="text/css">
+	.black-n-white{
+		position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+		display: block;
+	}
+	.news-post-widget h2 a{
+		color:	#337ab7
+	}
+</style>
+{% endblock %}
 {% block header %}
 	<!-- Header -->
 	<header class="header style-2">
@@ -95,12 +110,13 @@
 
 	            <!-- Item -->
 	            <div class="item active">
-	            	<img class="fullscreen" src="/images/fdbanner/pic1.jpg" alt="">
+					<img class="fullscreen" src="/images/fdbanner/pic1.jpg" alt="">
+					<div class="black-n-white"></div>
 	            	<div class="position-center-x full-width">
 						<div class="container">
 							<div class="banner-caption style-1 p-white h-white pull-right">
-								<h1 class="animated fadeInUp delay-3s">If you Don’t Practice<br> You <span>Don’t Derserve</span> <br> to win!</h1>
-								<a class="btn lg blue-btn animated fadeInRight delay-4s" href="#">Read More</a>
+								<h1 class="animated fadeInUp delay-3s">Check Out<br> Full <a href="/match/point-table/"><span>Point Table</span></a></h1>
+								<a class="btn sm blue-btn animated fadeInRight delay-4s" href="/match/point-table/">View</a>
 							</div>
 						</div>
 					</div>
@@ -108,26 +124,28 @@
 	            <!-- Item -->
 	            <!-- Item -->
 	            <div class="item">
-	            	<img class="fullscreen" src="/images/fdbanner/pic2.jpg" alt="">
+					<img class="fullscreen" src="/images/fdbanner/pic2.jpg" alt="">
+					<div class="black-n-white"></div>
 	            	<div class="position-center-x full-width">
 						<div class="container">
 							<div class="banner-caption style-1 p-white h-white pull-right">
-								<h1 class="animated fadeInUp delay-3s">If you Don’t Practice<br> You <span>Don’t Derserve</span> <br> to win!</h1>
-								<a class="btn lg blue-btn animated fadeInRight delay-4s" href="#">Read More</a>
+								<h1 class="animated fadeInUp delay-3s">Match <span>Fixtures</span></h1>
+								<a class="btn sm blue-btn animated fadeInRight delay-4s" href="/match/fixtures/">view</a>
 							</div>
 						</div>
-					</div>
+					</div>					
 	            </div> 
 	            <!-- Item -->
 
 	            <!-- Item -->
 	            <div class="item">
-	            	<img class="fullscreen" src="/images/fdbanner/pic6.jpg" alt="">
+					<img class="fullscreen" src="/images/fdbanner/pic6.jpg" alt="">
+					<div class="black-n-white"></div>
 	            	<div class="position-center-x full-width">
 						<div class="container">
 							<div class="banner-caption style-1 p-white h-white pull-right">
-								<h1 class="animated fadeInUp delay-3s">If you Don’t Practice<br> You <span>Don’t Derserve</span> <br> to win!</h1>
-								<a class="btn lg blue-btn animated fadeInRight delay-4s" href="#">Read More</a>
+								<h1 class="animated fadeInUp delay-3s">Match<span> Result</span></h1>
+								<a class="btn sm blue-btn animated fadeInRight delay-4s" href="/match/results/">view</a>
 							</div>
 						</div>
 					</div>
@@ -258,7 +276,7 @@
 			<div class="container">
 				<div class="row">
 <!-- Top Stroy Nd Add -->
-<div class="col-lg-3 col-sm-6 col-xs-6 r-full-width">
+<div class="col-lg-4 col-sm-6 col-xs-6 r-full-width">
 
 {% if pool.A %}
 <!-- Point Table Pool A -->
@@ -336,7 +354,7 @@
 <!-- Top Stroy Nd Add -->
 
 <!-- Top Stroy Nd Add -->
-<div class="col-lg-3 col-sm-6 col-xs-6 r-full-width pull-right none">
+<div class="col-lg-4 col-sm-6 col-xs-6 r-full-width pull-right none">
 
 {% if fixtures %}
 <!-- Match Fixture -->
@@ -432,12 +450,14 @@
 					<!-- Top Stroy Nd Add -->
 
 					<!-- News Post -->
-					<div class="col-lg-6 col-xs-12">
+					<div class="col-lg-4 col-xs-12">
 						<div class="news-post-holder">
 
 							<!-- Widget -->
-							<div class="news-post-widget">
-								<img src="/images/news-post/img-01.jpg" alt="">
+							<div class="news-post-widget theme-padding">
+								<h2><a href="/match/point-table/">Full Point Table</a></h2>
+								<h2><a href="/match/fixtures/">Fixtures</a></h2>
+								<h2><a href="/match/results/">Match Results</a></h2>
 								<div class="news-post-detail">
 									<span class="date">20 September 2k17</span>
 									<h2><a href="#">CSL</a></h2>
