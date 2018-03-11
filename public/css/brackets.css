@@ -1,0 +1,208 @@
+
+    #champion{
+        background: url('/images/trophy.png');
+        background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    }
+/* Larger Devices */
+@media(min-width:768px){
+    .row{
+        display:flex;
+        align-items: center;
+        flex-direction: row;
+        overflow: auto;
+        padding: 20px;
+    }
+    .column > div{
+        width:200px;
+        height:80px;
+        box-shadow:0px 0px 3px 0px black;
+    }
+    .column > div img {
+        width:80px;
+        height:80px;
+    }
+    span.match-divider-1{
+        display:block;
+        height:40px;
+    }
+    span.team-divider-1{
+        display: block;
+        height:10px;
+    }
+    .connector{
+        width: 100px;
+    }
+    span.vertical-line-top,span.vertical-line-bottom{
+        display: block;
+        border: 1px solid black;
+        height: 42px;
+        position: relative;
+        left: 50%;
+        width: 0px;
+    }
+    span.top-line,span.top-line-2,span.top-line-3{
+        display: block;
+        border: 1px solid;
+        width: 52%;
+    }
+    span.bottom-line,span.bottom-line-2,span.bottom-line-3{
+        display: block;
+        width: 52%;
+        border: 1px solid black;
+    }
+    span.horizontal-line,span.horizontal-line-2,span.horizontal-line-3{
+        display: block;
+        border: 1px solid black;
+        width: 50%;
+        position: relative;
+        left: 50%;
+    }
+    span.connector-divider-1{
+        height: 120px;
+        display: block;
+    }
+    span.match-divider-2{
+        display: block;
+        height: 129px;
+    }
+    span.team-divider-2{
+        display: block;
+        height: 131px;
+    }
+    span.connector-divider-2{
+        display: block;
+        height: 205px;
+    }
+    span.vertical-line-top-2,span.vertical-line-bottom-2{
+        display: block;
+        border: 1px solid black;
+        height: 104px;
+        position: relative;
+        left: 50%;
+        width: 0px;
+    }
+    span.team-divider-3{
+        display: block;
+        height: 340px;
+    }
+    span.vertical-line-top-3,span.vertical-line-bottom-3{
+        display: block;
+        border: 1px solid black;
+        height: 207px;
+        position: relative;
+        left: 50%;
+        width: 0px;
+    }
+}
+/* Smaller Devices */
+@media (max-width:768px){
+    .row{
+        display:flex;
+        align-items: center;
+        flex-direction: row;
+        overflow: auto;
+        padding: 10px;
+    }
+    .column > div{
+        width:100px;
+        height:40px;
+        /* border:1px solid black; */
+        box-shadow:0px 0px 3px 0px black;
+    }
+    .column > div img {
+        width:40px;
+        height:40px;
+    }
+    span.match-divider-1{
+        display:block;
+        height:20px;
+    }
+    span.team-divider-1{
+        display: block;
+        height:10px;
+    }
+    .connector{
+        width: 50px;
+    }
+    span.vertical-line-top,span.vertical-line-bottom{
+        display: block;
+        border: 1px solid black;
+        height: 23px;
+        position: relative;
+        left: 50%;
+        width: 0px;
+    }
+    span.top-line,span.top-line-2,span.top-line-3{
+        display: block;
+        border: 1px solid;
+        width: 53%;
+    }
+    span.bottom-line,span.bottom-line-2,span.bottom-line-3{
+        display: block;
+        width: 53%;
+        border: 1px solid black;
+    }
+    span.horizontal-line,span.horizontal-line-2,span.horizontal-line-3{
+        display: block;
+        border: 1px solid black;
+        width: 50%;
+        position: relative;
+        left: 50%;
+    }
+    span.connector-divider-1{
+        height: 59px;
+        display: block;
+    }
+    span.match-divider-2{
+        display: block;
+        height: 72px;
+    }
+    span.team-divider-2{
+        display: block;
+        height: 71px;
+    }
+    span.connector-divider-2{
+        display: block;
+        height: 109px;
+    }
+    span.vertical-line-top-2,span.vertical-line-bottom-2{
+        display: block;
+        border: 1px solid black;
+        height: 53.5px;
+        position: relative;
+        left: 50%;
+        width: 0px;
+    }
+    span.team-divider-3{
+        display: block;
+        height: 182px;
+    }
+    span.vertical-line-top-3,span.vertical-line-bottom-3{
+        display: block;
+        border: 1px solid black;
+        height: 109px;
+        position: relative;
+        left: 50%;
+        width: 0px;
+    }
+    .details >span{
+        font-size: 10px;
+    }
+}
+.column > div{
+    display: flex;
+}
+.details{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    color: black;
+    align-items: center;
+    flex-grow: 1;
+    background: linear-gradient(#c6c6c6 50%,#eaeaea 0%);
+}
+.details > span {
+        font-weight: bold;
+}
